@@ -1,9 +1,22 @@
 import {
-  Controller,Body,Get,Param,Post,Put,Delete, Res, HttpStatus} from '@nestjs/common';
+  Controller,
+  Body,
+  Get,
+  Param,
+  Post,
+  Put,
+  Delete,
+  Res,
+  HttpStatus,
+  UseGuards
+} from '@nestjs/common';
 import { Response } from 'express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
 import { ProductsService } from './products.service';
+
+@UseGuards(JwtAuthGuard)
 @Controller('products')
 export class ProductsController {
   
